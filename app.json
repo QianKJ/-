@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/resource/resource",
+    "pages/Mylibrary/Mylibrary",
+    "pages/library/library",
+    "pages/more/more",
+    "pages/Pim/Pim",
+    "pages/Binding/Binding",
+    "pages/PassWordFind/PassWordFind"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/resource/resource",
+        "text": "资源",
+        "iconPath": "/images/tab/tab_book_store_nor.png",
+        "selectedIconPath": "/images/tab/tab_book_store_pre.png"
+      },
+      {
+        "pagePath": "pages/Mylibrary/Mylibrary",
+        "text": "我的图书馆",
+        "iconPath": "/images/tab/tab_book_shelf_nor.png",
+        "selectedIconPath": "/images/tab/tab_book_shelf_pre.png"
+      },
+      {
+        "pagePath": "pages/more/more",
+        "text": "更多",
+        "iconPath": "/images/tab/tab_book_mine_nor.png",
+        "selectedIconPath": "/images/tab/tab_book_mine_pre.png"
+      }
+    ],
+    "selectedColor": "#FB7C58",
+    "borderStyle": "white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

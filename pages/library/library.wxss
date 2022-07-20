@@ -1,0 +1,8 @@
+/* pages/library/library.wxss */
+.baodan{
+  margin-top: 10px;
+}
+input{
+  display: block;
+}
+ 

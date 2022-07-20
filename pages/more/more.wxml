@@ -1,0 +1,16 @@
+<!--pages/more/more.wxml-->
+<!-- <button bindtap="gotoPimPage">个人信息</button>
+<button bindtap="gotoBindingPage">绑定账户</button> -->
+<view class="user-cart-list">
+    <navigator hover-class="none" class="cart-list" url="/pages/Pim/Pim">
+      <!-- <view wx:if="{{noplay}}" class="red-dot">{{noplay}}</view> -->
+      <image src="/images/more/1.png"></image>
+      个人信息
+    </navigator>
+    <navigator hover-class="none" class="cart-list" url="/pages/Binding/Binding">
+      <!-- <view wx:if="{{notransfer}}" class="red-dot">{{notransfer}}</view> -->
+      <image src="/images/more/2.png"></image>
+     账号绑定
+    </navigator>
+    
+  </view>

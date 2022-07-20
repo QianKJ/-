@@ -1,0 +1,118 @@
+/* pages/Binding/Binding.wxss */
+
+/* page{
+  height: 100%;  
+  background-color: #fafafa;
+ } */
+.login-container{
+  padding: 0 10%;
+  height: 100%;
+}
+.title{
+  font-size: large;
+  text-align: center;
+  padding-top: 10%;
+  font-weight: bold;
+}
+.login-box{
+  margin-top: 10%;
+  padding: 10% 5%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px #888888;
+}
+.login-box>input{
+  margin: 5% 0 8% 0;
+  border-bottom: 1rpx solid lightgray;
+}
+.login-btn{
+  width: 100%!important;
+  background-color: #2f6afd;
+  color: white;
+  font-weight: normal;
+}
+ 
+/* fenlei */
+.fenlei{
+  margin: 0 25rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+  display: flex;
+  align-items: center;
+}
+.fenlei text{
+  font-size:medium;
+  color: #0e0d0d;
+  /* margin-left: 0; */
+}
+/* 下拉框 */
+.select_box {
+  background: #fff;
+  width: 620rpx;
+  /* margin: 0 auto; */
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: left;
+  position: relative;
+}
+
+.select {
+  /* box-sizing: border-box; */
+ 
+  /* height: 100rpx; */
+  /* border: 1px solid #efefef; */
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  padding: auto;
+   width: 100%;
+}
+
+.select_text {
+  font-size: 28rpx;
+  flex: 1;
+  color: rgb(12, 11, 11);
+  line-height: 86rpx;
+  height: 86rpx;
+}
+
+.select_img {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.select_img_rotate {
+  transform: rotate(180deg);
+}
+
+.option_box {
+  position: absolute;
+  top: 60rpx;
+  width: 100%;
+  /* border: 1px solid #efefef; */
+  box-sizing: border-box;
+  height: 0;
+  overflow-y: auto;
+  border-top: 0;
+  background: #fff;
+  transition: height 0.3s;
+  z-index: 100;
+ 
+}
+
+.option {
+  display: block;
+  line-height: 40rpx;
+  font-size:60rpx;
+  
+  padding: 10rpx;
+  color: black;
+}
+/* .chickLibrary{
+ 
+} */
+
+
