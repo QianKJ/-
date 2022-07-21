@@ -12,11 +12,11 @@
       <label class="radio"wx:for="{{item.libs}}" wx:for-item="nameItem" wx:key="libId">
         <!-- <radio value="{{nameItem.name}},{{nameItem.libId}}" checked="{{item.checked}}" color="red"></radio> -->
         <radio name="libName"value="{{nameItem.name}}" checked="{{item.checked}}" color="red"></radio>
-        <input  bindfocus="inputChange"  type='text'   value="{{nameItem.libId}}"/>
-        <!-- <input  bindblur="inputChange2"  type='text'   value="{{nameItem.libraryCode}}"/> -->
+        <input  bindfocus="inputChange"  type='text'  value="{{nameItem.libId}}"/>
+        <input  bindfocus="inputChange2"  type='text' value="{{nameItem.libraryCode}}"/>
       
         <text>{{nameItem.name}}\n</text>
-        <text bindchange="inputChange2" class="libCode"value="{{nameItem.libraryCode}}">{{nameItem.libraryCode}}\n</text>
+        <!-- <text bindchange="inputChange2" class="libCode"value="{{nameItem.libraryCode}}">{{nameItem.libraryCode}}\n</text> -->
       </label>
     </radio-group>
   </view>

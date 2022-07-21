@@ -22,10 +22,10 @@
 </view>
 
   
-     <input name="word" bindinput="getWord" placeholder="请输入{{selectDatas[indexs]}}" model:value="{{word}}"/>
+     <input bindinput="getWord"   placeholder="请输入{{selectDatas[indexs]}}" value="{{word}}"/>
     <label class="passWord">密码</label>
-    <input name="password" bindinput="getPassWord" placeholder="请输入密码"  model:value="{{password}}"/>
-    <button class="login-btn" form-type='submit'>账户绑定</button>
+    <input  bindinput="getPassWord" placeholder="请输入密码"  value="{{password}}"/>
+    <button bindLog="bindLog" class="login-btn" form-type='submit'>账户绑定</button>
    <navigator url="/pages/PassWordFind/PassWordFind">找回密码</navigator>
    
   </view>

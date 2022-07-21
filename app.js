@@ -20,6 +20,13 @@ App({
     checkLibId:'',//选择的图书馆id
     weixinId:'',//微信用户唯一身份认证
     libraryCode:'',
+
+    word:'',//输入账号
+    password:'',//输入的密码
+    prefix:'',//登录方式
+    
+    // bindLibraryCode:'',//图书馆的code
+    
   },
   
 })

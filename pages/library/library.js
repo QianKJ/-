@@ -6,12 +6,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    libList: [],
+    libList: '',
     checkLib:'',
      checkLibId:'',//获取图书馆的name和libId
      libraryCode:'',
    
-   
+
   },
   goback: function(){
     wx.navigateTo({
@@ -37,18 +37,7 @@ Page({
       header: {
         'content-type': 'application/json' // 默认值
       },
-      // success: function (res) {
-      //   console.log(res.data)
-       
-      //   that.setData({
-      //     libList: res.data,
-         
-      //   }),
-      //   app.globalData.libLists = this.libList
-      // console.log( app.globalData)
-      
-
-      // },
+     
       success :(res)=>{
         console.log(res.data)
        

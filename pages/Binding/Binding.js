@@ -9,27 +9,91 @@ Page({
     shows: false, //控制下拉列表的显示隐藏，false隐藏、true显示
     selectDatas: ['姓名', '证条码', '电话','工作人员账户'], //下拉列表的数据
     indexs: 0, //选择的下拉列 表下标,
-   checkLib:'',
-   word:'',
-   password:'',
-   prefix:'',
-   bindLibraryCode:'',
+   checkLib:'',//选择的图书馆
+   word:'',//输入账号
+   password:'',//输入的密码
+   prefix:'NB',//登录方式
+   bindLibraryCode:'',//图书馆的code
+   weixinId:''//微信用户唯一ID
   },
+  getWeixinId:function(){
+    var that = this;
+    wx.login({
+      success: function(res) {
+          console.log(res)
+          if (res.code) {
+              // 获取用户信息
+              wx.getUserInfo({
+                  success: function(res) {
+                      var objz = {};
+                      objz.avatarUrl = res.userInfo.avatarUrl;
+                      objz.nickName = res.userInfo.nickName;
+                      console.log("info", objz);
+                  }
+              });
+              console.log('通过login接口的code换取openid')
+              wx.request({
+                  url: 'https://api.weixin.qq.com/sns/jscode2session',
+                  data: {
+                      //填上自己的小程序唯一标识
+                      appid: 'wxa5ef9c3d959a9bb1',
+                      //填上自己的小程序的 app secret
+                      secret: 'ca0cc9275c1c15b9d0cc256da76ab5a2',
+                      grant_type: 'authorization_code',
+                      js_code: res.code
+                  },
+                  method: 'GET',
+                  header: {
+                      'content-type': 'application/json'
+                  },
+                  success: (openIdRes)=>{
+                    
+                      console.info("登录成功返回的openId：" + openIdRes.data.openid);
+                      console.log(openIdRes.data.openid)
+                      app.globalData.weixinId = '!!'+openIdRes.data.openid
+                      console.log(app.globalData.weixinId)
+
+
+                  },
+                  fail: function(error) {
+                      console.info("获取用户openId失败");
+                      console.info(error);
+                  }
+                  
+              })
+          }
+      }
+      
+  })
+
+
+
+  },
+
+
   
   getWord: function(e) {
     
     this.setData({
       word:e.detail.value
     })
-   
+    app.globalData.word = this.data.word
   },
   getPassWord: function(e) {
-     //获取输入的内容
+    
     this.setData({
-      password:e.datail.value,//改变page--data中username的值
+      password:e.detail.value
     })
+    app.globalData.password = this.data.password
    
   },
+  // getPassWord:function(e) {
+    
+  //   this.setData({
+  //     password:e.datail.value,
+  //   })
+   
+  // },
 
   getForm(e) {
     this.formdata = e.detail.value
@@ -44,6 +108,7 @@ Page({
 
       console.log(this.data.word)
       console.log(this.data.password)
+      console.log(app.globalData)
     }
   },
   gotoLibraryPage: function (options) {
@@ -92,6 +157,7 @@ Page({
       })
     }
     console.log(this.data.prefix)
+    app.globalData.prefix = this.data.prefix
     
 
   },
@@ -106,8 +172,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.getWeixinId()
     this.setData({
-      checkLib:app.globalData.checkLib})
+      checkLib:app.globalData.checkLib,
+    weixinId:app.globalData.weixinId})
   },
 
   /**

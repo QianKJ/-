@@ -2,8 +2,8 @@
   "pages": [
     "pages/resource/resource",
     "pages/Mylibrary/Mylibrary",
-    "pages/library/library",
     "pages/more/more",
+    "pages/library/library",
     "pages/Pim/Pim",
     "pages/Binding/Binding",
     "pages/PassWordFind/PassWordFind"
