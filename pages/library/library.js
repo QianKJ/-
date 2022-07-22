@@ -32,7 +32,8 @@ Page({
   requestData: function () {
     var that = this;
     wx.request({
-      url: 'http://dp2003.com/i/api2/LibSettingApi/GetAreaLib',
+      // url: 'http://dp2003.com/i/api2/LibSettingApi/GetAreaLib',
+      url: 'http:///localhost/iLove/api2/LibSettingApi/GetAreaLib',
       data: {},
       header: {
         'content-type': 'application/json' // 默认值
@@ -45,8 +46,8 @@ Page({
           libList: res.data,
          
       }),
-         app.globalData.libLists = this.libList
-      //  console.log( app.globalData.libLists)
+         app.globalData.libLists = this.data.libList
+      //  console.log('全局',app.globalData.libLists)
       },
       fail: function (err) {
         console.log(err);

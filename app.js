@@ -15,12 +15,13 @@ App({
   },
   globalData: {
     // userInfo: null,
-    libLists: [],//图书馆列表
+    bindUsers:'',
+    libLists: '',//图书馆列表
     checkLib:'点击选择图书馆',//选择的图书馆名字
     checkLibId:'',//选择的图书馆id
     weixinId:'',//微信用户唯一身份认证
-    libraryCode:'',
-
+    // libraryCode:'',
+    bindLibraryCode:'',
     word:'',//输入账号
     password:'',//输入的密码
     prefix:'',//登录方式

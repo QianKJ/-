@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    bindUsers:'',
     shows: false, //控制下拉列表的显示隐藏，false隐藏、true显示
     selectDatas: ['姓名', '证条码', '电话','工作人员账户'], //下拉列表的数据
     indexs: 0, //选择的下拉列 表下标,
@@ -14,8 +15,90 @@ Page({
    password:'',//输入的密码
    prefix:'NB',//登录方式
    bindLibraryCode:'',//图书馆的code
-   weixinId:''//微信用户唯一ID
+   weixinId:'',//微信用户唯一ID
+   libId:'',
   },
+  postData:function(){
+    wx.request({
+      url:'http://localhost/iLove/api2/WxUserApi/Bind',
+      method: "POST",
+      data: {
+        weixinId:this.data.weixinId,
+        libId:this.data.libId,
+        bindLibraryCode:this.data. bindLibraryCode,
+        prefix:this.data.prefix,
+        word:this.data.word,
+        password:this.data.password
+      },
+      
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+
+      },
+      success: (res) => {
+        
+        
+        if(res.data.errorInfo==""){
+          console.log(res.data);
+          wx.showToast({
+          title: '请求成功',
+          icon: 'success',
+          duration: 2000//持续的时间
+          
+        })
+
+        this.requestUsers()
+       
+     
+      
+          
+      }else{ wx.showToast({
+          title: '输入信息错误',
+          icon: 'error',
+          duration: 2000//持续的时间
+        })}
+      
+
+      },
+     
+    })
+  },
+  requestUsers: function () {
+    var that = this;
+    var thisUrl='http://localhost/iLove/api2//WxUserApi/Get?weixinId='
+    wx.request({
+      // url: 'http:///localhost/iLove/api2/LibSettingApi/GetAreaLib',
+      
+      url:thisUrl+this.data.weixinId,
+      data: {},
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+     
+      success :(res)=>{
+        console.log(res.data)
+        console.log(res.data.users)
+        wx.switchTab({
+
+          url: '../Mylibrary/Mylibrary'
+          })
+         that.setData({
+          //libList: res.data,
+          bindUsers:res.data.users
+          
+      })
+      console.log(this.data.bindUsers)
+      app.globalData.bindUsers = this.data.bindUsers
+      console.log('全局：',app.globalData.bindUsers)
+     
+        
+      },
+      fail: function (err) {
+        console.log(err);
+      }
+    });
+  },
+
   getWeixinId:function(){
     var that = this;
     wx.login({
@@ -87,34 +170,31 @@ Page({
     app.globalData.password = this.data.password
    
   },
-  // getPassWord:function(e) {
+  
     
-  //   this.setData({
-  //     password:e.datail.value,
-  //   })
-   
+  
+
+  // getForm(e) {
+  //   this.formdata = e.detail.value
+    
+
+  //   if (this.word=="1") {
+  //     wx.navigateTo({
+  //       url: '../Pim/Pim'
+  //     })
+  //   } else {
+  //     console.log('用户信息不正确')
+
+  //     console.log(this.data.word)
+  //     console.log(this.data.password)
+  //     console.log(app.globalData)
+  //   }
   // },
-
-  getForm(e) {
-    this.formdata = e.detail.value
-    
-
-    if (this.word=="1") {
-      wx.navigateTo({
-        url: '../Pim/Pim'
-      })
-    } else {
-      console.log('用户信息不正确')
-
-      console.log(this.data.word)
-      console.log(this.data.password)
-      console.log(app.globalData)
-    }
-  },
   gotoLibraryPage: function (options) {
     wx.navigateTo({
     url: '../library/library',
     })
+    Page.onLoad()
     },
   // 点击下拉显示框
   selectTaps() {
@@ -175,7 +255,10 @@ Page({
     this.getWeixinId()
     this.setData({
       checkLib:app.globalData.checkLib,
-    weixinId:app.globalData.weixinId})
+    weixinId:app.globalData.weixinId,
+    bindLibraryCode:app.globalData.bindLibraryCode,
+    libId:app.globalData.checkLibId
+  })
   },
 
   /**

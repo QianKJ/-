@@ -1,4 +1,11 @@
 <!--pages/Mylibrary/Mylibrary.wxml-->
+<view class='UCenter-bg' wx:for="{{bindUsers}}" wx:key="index" >
+   
+    <view class='text-xl'>用户名：{{item.remark}} </view>
+    <view class='text-xl'>用户Id：{{item.id}} </view>
+   <button class="delBind" size="mini" 	plain="ture" >解除绑定</button>
+   
+</view>
 <view class="user-cart-list">
     <navigator hover-class="none" class="cart-list" url="/pages/Pim/Pim">
       <!-- <view wx:if="{{noplay}}" class="red-dot">{{noplay}}</view> -->

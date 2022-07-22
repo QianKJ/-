@@ -1,18 +1,21 @@
 // pages/Mylibrary/Mylibrary.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    bindUsers:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+   
+   //用onLoad周期方法重新加载，实现当前页面的刷新
+  
   },
 
   /**
@@ -26,7 +29,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.setData({
+      bindUsers:app.globalData.bindUsers,
+      
+   
+  })
   },
 
   /**

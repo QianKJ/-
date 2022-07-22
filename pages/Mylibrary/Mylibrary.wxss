@@ -33,3 +33,26 @@
   margin: 0 auto;
   padding-bottom: 5px;
 }
+ .UCenter-bg { 
+  background-image:linear-gradient(45deg, #ff9700, #ed1c24);
+  background-size: cover;
+  height: 350rpx;
+  display: flex;
+ 
+  overflow: hidden;
+  position: relative;
+  flex-direction: column;
+ 
+  color: #fff;
+  font-weight: 300;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+} 
+
+/* .UCenter-bg text {
+  opacity: 0.8;
+} */
+.delBind{ 
+  position: absolute;
+  bottom: 0;
+  right:0
+} 

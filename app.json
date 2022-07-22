@@ -6,7 +6,7 @@
     "pages/library/library",
     "pages/Pim/Pim",
     "pages/Binding/Binding",
-    "pages/PassWordFind/PassWordFind"
+    "pages/PassWordFind/PassWordFind" 
   ],
   "window": {
     "backgroundTextStyle": "light",

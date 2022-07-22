@@ -1,5 +1,5 @@
 <view class="container">
-  <form bindsubmit="getForm" class="formStyle">
+  <!-- <form  class="formStyle"> -->
 <view class="login-container">
 <view class="title" >图书馆名称
 <button class="chickLibrary" bindtap="gotoLibraryPage">{{checkLib}}</button>
@@ -25,12 +25,12 @@
      <input bindinput="getWord"   placeholder="请输入{{selectDatas[indexs]}}" value="{{word}}"/>
     <label class="passWord">密码</label>
     <input  bindinput="getPassWord" placeholder="请输入密码"  value="{{password}}"/>
-    <button bindLog="bindLog" class="login-btn" form-type='submit'>账户绑定</button>
+    <button bindtap="postData" class="login-btn" form-type='submit'>账户绑定</button>
    <navigator url="/pages/PassWordFind/PassWordFind">找回密码</navigator>
    
   </view>
 </view>
-</form>
+<!-- </form> -->
 </view>
 
 
