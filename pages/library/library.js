@@ -6,17 +6,18 @@ Page({
    * 页面的初始数据
    */
   data: {
+    urlGetLib:'',
     libList: '',
     checkLib:'',
      checkLibId:'',//获取图书馆的name和libId
      libraryCode:'',
-   
+    
 
   },
   goback: function(){
-    wx.navigateTo({
+    wx.redirectTo({
  
-      url: '/pages/Binding/Binding',
+      url: '../Binding/Binding',
  
       })
   },
@@ -25,6 +26,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.setData({
+      urlGetLib:app.globalData.urlGetLib,
+    
+  })
     this.requestData();
     
   
@@ -32,8 +37,8 @@ Page({
   requestData: function () {
     var that = this;
     wx.request({
-      // url: 'http://dp2003.com/i/api2/LibSettingApi/GetAreaLib',
-      url: 'http:///localhost/iLove/api2/LibSettingApi/GetAreaLib',
+      url:this.data.urlGetLib,
+      // url: 'http:///localhost/iLove/api2/LibSettingApi/GetAreaLib',
       data: {},
       header: {
         'content-type': 'application/json' // 默认值
@@ -68,26 +73,23 @@ Page({
     console.log(app.globalData.checkLib)
    
   },
-inputChange:function(e){
-  this.checkLibId=e.detail.value;
+  getLibIdCode:function(e){
+    console.log(e.currentTarget.dataset.libid)
+    console.log(e.currentTarget.dataset.libcode)
+    this.checkLibId=e.currentTarget.dataset.libid;
+    
   app.globalData.checkLibId = this.checkLibId;
- 
-  console.log(this.checkLibId)
-  console.log(app.globalData.checkLibId)
-},
-inputChange2:function(e){
-  this.libraryCode=e.detail.value;
-  app.globalData.libraryCode = this.libraryCode;
- 
-  console.log(this.libraryCode)
-  console.log(app.globalData.libraryCode)
-},
-  
+  this.libraryCode=e.currentTarget.dataset.libcode;
+ app.globalData.libraryCode = this.libraryCode;
+ console.log(this.data.checkLibId)
+  },
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
+    
   },
 
   /**

@@ -1,19 +1,80 @@
 // pages/Pim.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    getUserInformation:'',
+    checkLibId:'',//选择的图书馆id
+    getUserInformationUrl:'',
+    patronBarcode:''
+  },
+  getUserInformation:function(){
+    var that = this;
+    var thisUrl=this.data.getUserInformationUrl
+    wx.request({
+      // var url1='http://localhost/i/api2/PatronApi/GetPatron?libId=62cf94ae2276ed9437e8e010&patronBarcode=P001&username',
+      url:thisUrl+'libId='+this.data.checkLibId+'&patronBarcode='+this.data.patronBarcode+'&username=',
+      
+      method: "get",
+      data: {
+        
+      },
+      
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
 
+      },
+      success: (res) => {
+        
+        
+        if(res.data.errorInfo==""){
+          console.log(res.data);
+          this.setData({
+            getUserInformation:res.data
+          })
+          wx.showToast({
+          title: '请求成功',
+          icon: 'success',
+          duration: 2000//持续的时间
+          
+        })
+
+       
+       
+     
+      
+          
+      }else{ wx.showToast({
+          title: '获取信息失败',
+          icon: 'error',
+          duration: 2000//持续的时间
+        })}
+      
+
+      },
+     
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.setData({
+      patronBarcode:app.globalData.patronBarcode,
+      checkLibId:app.globalData.checkLibId,
+      getUserInformationUrl:app.globalData.getUserInformationUrl
+     
+  })
+  console.log(app.globalData.patronBarcode)
+  console.log(app.globalData.checkLibId)
+  console.log(app.globalData.getUserInformationUrl)
+  this.getUserInformation()
   },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

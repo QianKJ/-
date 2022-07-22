@@ -6,15 +6,67 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bindUsers:''
+    patronBarcode:'',
+    readerBarcode:''
   },
+  getPatronBarcode:function(e){
+    console.log(e.currentTarget.dataset.readerbarcode)
+    this.setData({
+      patronBarcode:e.currentTarget.dataset.readerbarcode
+    })
+    app.globalData.patronBarcode=this.data.patronBarcode
+    
+
+  },
+  
+    delBind:function(e){
+      console.log(e.currentTarget.dataset.text)
+      var thisUrl='http://localhost/iLove/api2/wxuserApi/Delete?bindUserId='
+      wx.request({
+        
+        
+        url:thisUrl+e.currentTarget.dataset.text,
+        data: {},
+        method: 'delete',
+        header: {
+          "content-type":"application/x-www-form-urlencoded"
+        },
+       
+        success :(res)=>{
+         
+          console.log(res.data)
+          this.setData({
+            bindUsers:{
+              remark:'',
+             
+            },
+          
+          })
+          app.globalData.bindUsers=this.data.bindUsers
+          wx.reLaunch({
+
+            url: '../Mylibrary/Mylibrary',
+  
+          })
+          
+          
+        },
+        fail: function (err) {
+          console.log(err);
+        }
+      });
+    },
+   
+  
+
+ 
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
    
-   //用onLoad周期方法重新加载，实现当前页面的刷新
+    
   
   },
 
@@ -34,13 +86,16 @@ Page({
       
    
   })
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
+    // this.setData({
+    //   bindUsers:app.globalData.bindUsers,
+      
   },
 
   /**

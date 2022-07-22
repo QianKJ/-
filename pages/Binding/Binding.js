@@ -6,6 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    getUserUrl:'',
+    postBindUrl:'',
+    patronBarcode:'',
     bindUsers:'',
     shows: false, //控制下拉列表的显示隐藏，false隐藏、true显示
     selectDatas: ['姓名', '证条码', '电话','工作人员账户'], //下拉列表的数据
@@ -20,7 +23,7 @@ Page({
   },
   postData:function(){
     wx.request({
-      url:'http://localhost/iLove/api2/WxUserApi/Bind',
+      url:this.data.postBindUrl,
       method: "POST",
       data: {
         weixinId:this.data.weixinId,
@@ -65,9 +68,9 @@ Page({
   },
   requestUsers: function () {
     var that = this;
-    var thisUrl='http://localhost/iLove/api2//WxUserApi/Get?weixinId='
+    var thisUrl=this.data.getUserUrl
     wx.request({
-      // url: 'http:///localhost/iLove/api2/LibSettingApi/GetAreaLib',
+     
       
       url:thisUrl+this.data.weixinId,
       data: {},
@@ -174,27 +177,12 @@ Page({
     
   
 
-  // getForm(e) {
-  //   this.formdata = e.detail.value
-    
-
-  //   if (this.word=="1") {
-  //     wx.navigateTo({
-  //       url: '../Pim/Pim'
-  //     })
-  //   } else {
-  //     console.log('用户信息不正确')
-
-  //     console.log(this.data.word)
-  //     console.log(this.data.password)
-  //     console.log(app.globalData)
-  //   }
-  // },
+  
   gotoLibraryPage: function (options) {
     wx.navigateTo({
     url: '../library/library',
     })
-    Page.onLoad()
+    // Page.onLoad()
     },
   // 点击下拉显示框
   selectTaps() {
@@ -255,9 +243,11 @@ Page({
     this.getWeixinId()
     this.setData({
       checkLib:app.globalData.checkLib,
-    weixinId:app.globalData.weixinId,
-    bindLibraryCode:app.globalData.bindLibraryCode,
-    libId:app.globalData.checkLibId
+      weixinId:app.globalData.weixinId,
+      bindLibraryCode:app.globalData.bindLibraryCode,
+      libId:app.globalData.checkLibId,
+      getUserUrl:app.globalData.getUserUrl,
+      postBindUrl:app.globalData.postBindUrl
   })
   },
 

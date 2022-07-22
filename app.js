@@ -14,8 +14,16 @@ App({
     })
   },
   globalData: {
+    //图书馆信息接口
+    urlGetLib:'http:///localhost/iLove/api2/LibSettingApi/GetAreaLib',
+    //用户绑定图书馆接口
+    getUserUrl:'http://localhost/iLove/api2//WxUserApi/Get?weixinId=',
+    //用户绑定接口
+    postBindUrl:'http://localhost/iLove/api2/WxUserApi/Bind',
     // userInfo: null,
-    bindUsers:'',
+    getUserInformationUrl:'http://localhost/iLove/api2/PatronApi/GetPatron?',
+    patronBarcode:'',//读者证条码号
+    bindUsers:{ remark:''},
     libLists: '',//图书馆列表
     checkLib:'点击选择图书馆',//选择的图书馆名字
     checkLibId:'',//选择的图书馆id

@@ -1,9 +1,13 @@
 <!--pages/Mylibrary/Mylibrary.wxml-->
-<view class='UCenter-bg' wx:for="{{bindUsers}}" wx:key="index" >
+<view class='UCenter-bg' wx:for="{{bindUsers}}" wx:key="index"  >
    
     <view class='text-xl'>用户名：{{item.remark}} </view>
-    <view class='text-xl'>用户Id：{{item.id}} </view>
-   <button class="delBind" size="mini" 	plain="ture" >解除绑定</button>
+    <view class='text-xl' >用户Id：{{item.id}} 
+      <view bindtap="getPatronBarcode" class='text-xl' data-readerbarcode='{{item.readerBarcode}}'>读者证条码：{{item.readerBarcode}} </view>
+     
+      <!-- <span id="libId" style="display:none" class='{{item.id}}'>{{item.id}}</span> -->
+   <button class="delBind" bindtap="delBind"   data-text='{{item.id}}' size="mini" 	plain="ture"  >解除绑定</button>
+   </view>
    
 </view>
 <view class="user-cart-list">
