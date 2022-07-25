@@ -1,23 +1,27 @@
 <!--pages/Mylibrary/Mylibrary.wxml-->
-<view class='UCenter-bg' wx:for="{{bindUsers}}" wx:key="index"  >
+<view class='UCenter-bg' wx:for="{{bindUsers}}"  wx:key="index"  >
    
-    <view class='text-xl'>用户名：{{item.remark}} </view>
+    <view class='text-xl' >用户名：{{item.remark}} </view>
     <view class='text-xl' >用户Id：{{item.id}} 
-      <view bindtap="getPatronBarcode" class='text-xl' data-readerbarcode='{{item.readerBarcode}}'>读者证条码：{{item.readerBarcode}} </view>
-     
+      <button  data-readerbarcode='{{item.readerBarcode}}' bindtap="getPatronBarcode" >
+      获取个人信息{{item.readerBarcode}}
+    </button>
+    <button class="delBind" bindtap="delBind"  data-userid='{{item.id}}' size="mini" 	plain="ture"  >解除绑定</button> 
+    <text class="tishi">注意：切换用户请先解除绑定</text>
       <!-- <span id="libId" style="display:none" class='{{item.id}}'>{{item.id}}</span> -->
-   <button class="delBind" bindtap="delBind"   data-text='{{item.id}}' size="mini" 	plain="ture"  >解除绑定</button>
+  
    </view>
    
 </view>
 <view class="user-cart-list">
-    <navigator hover-class="none" class="cart-list" url="/pages/Pim/Pim">
-      <!-- <view wx:if="{{noplay}}" class="red-dot">{{noplay}}</view> -->
+    <!-- <navigator  hover-class="none" class="cart-list" url="/pages/Pim/Pim">
+     
       <image src="/images/more/1.png"></image>
       个人信息
-    </navigator>
+    </navigator> -->
+    
     <navigator hover-class="none" class="cart-list" url="/pages/Binding/Binding">
-      <!-- <view wx:if="{{notransfer}}" class="red-dot">{{notransfer}}</view> -->
+     
       <image src="/images/more/2.png"></image>
      账号绑定
     </navigator>

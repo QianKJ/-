@@ -24,7 +24,7 @@
   
      <input bindinput="getWord"   placeholder="请输入{{selectDatas[indexs]}}" value="{{word}}"/>
     <label class="passWord">密码</label>
-    <input  bindinput="getPassWord" placeholder="请输入密码"  value="{{password}}"/>
+    <input  password='ture' bindinput="getMiMa" placeholder="请输入密码"  value="{{mima}}"/>
     <button bindtap="postData" class="login-btn" form-type='submit'>账户绑定</button>
    <navigator url="/pages/PassWordFind/PassWordFind">找回密码</navigator>
    

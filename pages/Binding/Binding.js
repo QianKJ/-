@@ -1,4 +1,4 @@
-// pages/Binding/Binding.js
+
 const app = getApp();
 Page({
 
@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    weixinidurl:'',
     getUserUrl:'',
     postBindUrl:'',
     patronBarcode:'',
@@ -15,23 +16,28 @@ Page({
     indexs: 0, //选择的下拉列 表下标,
    checkLib:'',//选择的图书馆
    word:'',//输入账号
-   password:'',//输入的密码
+   mima:'',
    prefix:'NB',//登录方式
    bindLibraryCode:'',//图书馆的code
    weixinId:'',//微信用户唯一ID
    libId:'',
   },
   postData:function(){
+   
+    console.log(this.data.bindLibraryCode)
+   console.log(this.weixinId)
+
     wx.request({
       url:this.data.postBindUrl,
       method: "POST",
       data: {
         weixinId:this.data.weixinId,
         libId:this.data.libId,
-        bindLibraryCode:this.data. bindLibraryCode,
+        bindLibraryCode:this.data.bindLibraryCode,
         prefix:this.data.prefix,
         word:this.data.word,
-        password:this.data.password
+        password:this.data.mima,
+        
       },
       
       header: {
@@ -42,7 +48,7 @@ Page({
         
         
         if(res.data.errorInfo==""){
-          console.log(res.data);
+         
           wx.showToast({
           title: '请求成功',
           icon: 'success',
@@ -55,10 +61,14 @@ Page({
      
       
           
-      }else{ wx.showToast({
-          title: '输入信息错误',
-          icon: 'error',
+      }else{ 
+        console.log(app.globalData.weixinId)
+        console.log(res.data)
+        wx.showToast({
+          title: res.data.errorInfo,
+          icon:'none',
           duration: 2000//持续的时间
+         
         })}
       
 
@@ -67,6 +77,7 @@ Page({
     })
   },
   requestUsers: function () {
+    
     var that = this;
     var thisUrl=this.data.getUserUrl
     wx.request({
@@ -84,6 +95,7 @@ Page({
         wx.switchTab({
 
           url: '../Mylibrary/Mylibrary'
+         
           })
          that.setData({
           //libList: res.data,
@@ -93,6 +105,7 @@ Page({
       console.log(this.data.bindUsers)
       app.globalData.bindUsers = this.data.bindUsers
       console.log('全局：',app.globalData.bindUsers)
+      
      
         
       },
@@ -103,58 +116,50 @@ Page({
   },
 
   getWeixinId:function(){
-    var that = this;
-    wx.login({
-      success: function(res) {
-          console.log(res)
-          if (res.code) {
-              // 获取用户信息
-              wx.getUserInfo({
-                  success: function(res) {
-                      var objz = {};
-                      objz.avatarUrl = res.userInfo.avatarUrl;
-                      objz.nickName = res.userInfo.nickName;
-                      console.log("info", objz);
-                  }
-              });
-              console.log('通过login接口的code换取openid')
-              wx.request({
-                  url: 'https://api.weixin.qq.com/sns/jscode2session',
-                  data: {
-                      //填上自己的小程序唯一标识
-                      appid: 'wxa5ef9c3d959a9bb1',
-                      //填上自己的小程序的 app secret
-                      secret: 'ca0cc9275c1c15b9d0cc256da76ab5a2',
-                      grant_type: 'authorization_code',
-                      js_code: res.code
-                  },
-                  method: 'GET',
-                  header: {
-                      'content-type': 'application/json'
-                  },
-                  success: (openIdRes)=>{
-                    
-                      console.info("登录成功返回的openId：" + openIdRes.data.openid);
-                      console.log(openIdRes.data.openid)
-                      app.globalData.weixinId = '!!'+openIdRes.data.openid
-                      console.log(app.globalData.weixinId)
-
-
-                  },
-                  fail: function(error) {
-                      console.info("获取用户openId失败");
-                      console.info(error);
-                  }
-                  
-              })
-          }
-      }
-      
-  })
-
-
+    var that=this
+    console.log(app.globalData.weixinidurl)
+   
+    if(!wx.getStorageSync("weixinId")||wx.getStorageSync("weixinId")==''){
+      //不存在数据时，发送请求
+      wx.request({
+        url:app.globalData.weixinidurl,
+       
+        data: {},
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+       
+  
+       
+        success :(res)=>{
+          console.info("登录成功返回的openId：" +res.data);
+          wx.setStorageSync("weixinId",{weixinId:res.data})       
+                app.globalData.weixinId ='!!'+wx.getStorageSync("weixinId").weixinId
+                console.log(app.globalData.weixinId)
+              
+               
+                this.weixinId='!!'+wx.getStorageSync("weixinId").weixinId
+                console.log(this.weixinId)
+        },
+        fail: function (err) {
+          console.log(err);
+        }
+      });
+  }else{
+      console.log("使用旧数据")
+      // string.replace(/-/g,'')
+      this.weixinId='!!'+wx.getStorageSync("weixinId").weixinId
+      // .weixinId.replace(/-/g,'')
+      app.globalData.weixinId=this.weixinId
+      console.log('全局'+app.globalData.weixinId)
+     console.log(this.weixinId)
+    }
+   
 
   },
+   
+
+  
 
 
   
@@ -165,12 +170,12 @@ Page({
     })
     app.globalData.word = this.data.word
   },
-  getPassWord: function(e) {
+  getMiMa: function(e) {
     
     this.setData({
-      password:e.detail.value
+      mima:e.detail.value
     })
-    app.globalData.password = this.data.password
+    app.globalData.mima = this.data.mima
    
   },
   
@@ -242,12 +247,14 @@ Page({
   onLoad(options) {
     this.getWeixinId()
     this.setData({
+      weixinidurl:app.globalData.weixinidurl,
       checkLib:app.globalData.checkLib,
       weixinId:app.globalData.weixinId,
-      bindLibraryCode:app.globalData.bindLibraryCode,
+      bindLibraryCode:app.globalData.libraryCode,
       libId:app.globalData.checkLibId,
       getUserUrl:app.globalData.getUserUrl,
-      postBindUrl:app.globalData.postBindUrl
+      postBindUrl:app.globalData.postBindUrl,
+      // weixinidurl:app.globalData.weixinidurl,
   })
   },
 

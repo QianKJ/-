@@ -11,6 +11,7 @@ Page({
     checkLib:'',
      checkLibId:'',//获取图书馆的name和libId
      libraryCode:'',
+     
     
 
   },
@@ -81,7 +82,8 @@ Page({
   app.globalData.checkLibId = this.checkLibId;
   this.libraryCode=e.currentTarget.dataset.libcode;
  app.globalData.libraryCode = this.libraryCode;
- console.log(this.data.checkLibId)
+ 
+ console.log(app.globalData.libraryCode)
   },
 
 

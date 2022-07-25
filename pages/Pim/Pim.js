@@ -12,7 +12,7 @@ Page({
     patronBarcode:''
   },
   getUserInformation:function(){
-    var that = this;
+    
     var thisUrl=this.data.getUserInformationUrl
     wx.request({
       // var url1='http://localhost/i/api2/PatronApi/GetPatron?libId=62cf94ae2276ed9437e8e010&patronBarcode=P001&username',

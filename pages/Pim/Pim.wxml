@@ -15,7 +15,7 @@
 </view>
 <text class='left'>证状态</text>
 <view class='right' >
- <text>无</text>
+ <text>{{item.state}}</text>
 </view>
 <text class='left'>电话</text>
 <view class='right' wx:for="{{getUserInformation}}"  wx:key="index">
@@ -30,22 +30,22 @@
 </view>
 <text class='left'>出生日期</text>
 <view class='right'>
- <text>无</text>
+ <text>{{item.dateOfBirth}}</text>
 </view><text class='left'>证号</text>
 <view class='right' >
- <text>无</text>
+ <text>{{item.cardNumber}}</text>
 </view>
 <text class='left'>身份证号</text>
 <view class='right' >
- <text>无</text>
+ <text>{{item.idCardNumber}}</text>
 </view>
 <text class='left'>职务</text>
 <view class='right' >
- <text>无</text>
+ <text>{{item.post}}</text>
 </view>
 <text class='left'>地址</text>
 <view class='right' >
- <text>无</text>
+ <text>{{item.address}}</text>
 </view>
 <text class='left'>Email</text>
 <view class='right' wx:for="{{getUserInformation}}"  wx:key="index">
@@ -65,7 +65,7 @@
 </view>
 <text class='left'>头像</text>
 <view class='right'>
- <text>无</text>
+ <text>''</text>
 </view>
 <text class='left'>备注</text>
 <view class='right'>
