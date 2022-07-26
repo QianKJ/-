@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/resource/resource",
     "pages/Mylibrary/Mylibrary",
+    "pages/resource/resource",
+   
     "pages/more/more",
     "pages/library/library",
     "pages/Pim/Pim",

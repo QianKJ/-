@@ -47,11 +47,8 @@ Page({
      
       
           
-      }else{ wx.showToast({
-          title: '获取信息失败',
-          icon: 'error',
-          duration: 2000//持续的时间
-        })}
+      }else
+       
       
 
       },

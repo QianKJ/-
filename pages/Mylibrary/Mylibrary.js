@@ -11,8 +11,9 @@ Page({
     delbindurl:'',
     patronBarcode:'',
     readerBarcode:'',
-    bindUsers:''
+    bindUsers:'',
   },
+  // 获取用户Barcode并跳转详细信息页
   getPatronBarcode:function(e){
     console.log(e.currentTarget.dataset.readerbarcode)
     this.setData({
@@ -26,7 +27,7 @@ Page({
       })
 
   },
-  
+  // 解绑
     delBind:function(e){
       console.log(e.currentTarget.dataset.userid)
       wx.removeStorageSync("weixinId")
@@ -63,7 +64,7 @@ Page({
         }
       });
     },
-   
+  //  获取用户信息
     requestUsers: function () {
       var that = this;
       var thisUrl=this.data.getUserUrl

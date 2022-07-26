@@ -19,14 +19,14 @@ App({
   globalData: {
     weixinidurl:'https://dp2003.com/i/api2//WxUserApi/GetGuid',
     //图书馆信息接口
-    urlGetLib:'https://dp2003.com/i/api2/LibSettingApi/GetAreaLib',
+    urlGetLib:'https://demo30.ilovelibrary.cn/i/api2/LibSettingApi/GetAreaLib',
     //用户绑定图书馆接口
-    getUserUrl:'https://dp2003.com/i/api2//WxUserApi/Get?weixinId=',
+    getUserUrl:'https://demo30.ilovelibrary.cn/i/api2//WxUserApi/Get?weixinId=',
     //用户绑定接口
-    postBindUrl:'https://dp2003.com/i/api2/WxUserApi/Bind',
+    postBindUrl:'https://demo30.ilovelibrary.cn/i/api2/WxUserApi/Bind',
     // userInfo: null,
-    getUserInformationUrl:'https://dp2003.com/i/api2/PatronApi/GetPatron?',
-    delbindurl:'https://dp2003.com/i/api2/wxuserApi/Delete?bindUserId=',
+    getUserInformationUrl:'https://demo30.ilovelibrary.cn/i/api2/PatronApi/GetPatron?',
+    delbindurl:'https://demo30.ilovelibrary.cn/i/api2/wxuserApi/Delete?bindUserId=',
     // weixinidurl:'https://dp2003.com/i/api2//WxUserApi/GetGuid',
     // //图书馆信息接口
     // urlGetLib:'https://dp2003.com/i/api2/LibSettingApi/GetAreaLib',
